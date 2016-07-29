@@ -1,0 +1,16 @@
+{
+  "name": "quio",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-register": "^6.11.6",
+    "electron-prebuilt": "^1.3.1"
+  },
+  "main": "./main",
+  "scripts": {
+    "start": "electron ."
+  }
+}
