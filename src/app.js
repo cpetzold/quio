@@ -1,39 +1,57 @@
-import {
-  app,
-  globalShortcut,
-  BrowserWindow,
-} from 'electron';
+import 'babel-polyfill'
+import { app, screen, globalShortcut, BrowserWindow } from 'electron'
 
-let window;
+import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
 
-function createWindow() {
+const DEV = true
+let window
+
+function createWindow () {
+  const {width: sw, height: sh} = screen.getPrimaryDisplay().workAreaSize
+
+  const width = 600
+  const height = 64
+
   window = new BrowserWindow({
-    width: 800,
-    height: 600,
-    frame: false
-  });
+    width,
+    height,
+    x: Math.round((sw / 2) - (width / 2)),
+    y: Math.round(sh / 4),
+    show: true,
+    movable: false,
+    center: false,
+    frame: false,
+    resizable: false,
+    minimizable: false,
+    maximizable: false,
+    backgroundColor: '#fafafa'
+  })
 
-  window.loadURL('./index.html');
+  window.loadURL(`file://${__dirname}/index.html`)
 
-  window.on('blur', (e) => {
-    window.hide();
-  });
+  if (DEV) {
+    installExtension(REACT_DEVELOPER_TOOLS)
+  } else {
+    window.on('blur', (e) => {
+      window.hide()
+    })
+  }
 }
 
-app.dock.hide();
+app.dock.hide()
 
 app.on('ready', () => {
   globalShortcut.register('Command+Space', () => {
     if (window.isVisible()) {
-      window.hide();
+      window.hide()
     }  else {
-      window.show();
+      window.show()
     }
-  });
+  })
 
-  createWindow();
-});
+  createWindow()
+})
 
 app.on('will-quit', () => {
-  globalShortcut.unregisterAll();
-});
+  globalShortcut.unregisterAll()
+})
