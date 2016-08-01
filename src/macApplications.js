@@ -41,7 +41,11 @@ async function getApplicationInfo (appPath) {
     })
   }
 
-  return { name, iconPng }
+  return {
+    name,
+    iconPng,
+    path: appPath
+  }
 }
 
 const getApplicationInfoMemoized = memoizeAsync(getApplicationInfo)

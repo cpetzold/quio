@@ -1,7 +1,7 @@
 import 'babel-polyfill'
 import { app, screen, globalShortcut, BrowserWindow } from 'electron'
 
-import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
+import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer'
 
 const DEV = true
 let window
@@ -27,14 +27,16 @@ function createWindow () {
     backgroundColor: '#fafafa'
   })
 
+  window.on('blur', (e) => {
+    window.hide()
+  })
+
   window.loadURL(`file://${__dirname}/index.html`)
 
   if (DEV) {
+    window.openDevTools()
     installExtension(REACT_DEVELOPER_TOOLS)
-  } else {
-    window.on('blur', (e) => {
-      window.hide()
-    })
+    installExtension(REDUX_DEVTOOLS)
   }
 }
 
