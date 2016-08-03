@@ -1,5 +1,4 @@
 import { app } from 'electron'
-import fs from 'fs'
 import mkdirp from 'mkdirp'
 import path from 'path'
 import async from 'async'
@@ -10,7 +9,6 @@ import plist from 'simple-plist'
 import { memoizeAsync } from './utils'
 
 promisifyAll(child_process, {multiArgs: true})
-promisifyAll(fs)
 promisifyAll(plist)
 const mkdirpAsync = promisify(mkdirp)
 
