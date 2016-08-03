@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     border: 'none',
     outline: 'none',
-    fontFamily: 'Lucida Grande',
+    fontFamily: 'Helvetica',
     fontSize: 32,
     lineHeight: 1,
     padding: 16,
