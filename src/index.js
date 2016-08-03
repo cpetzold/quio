@@ -19,7 +19,7 @@ const initialState = Immutable.fromJS({
 function reducer (state = initialState , action) {
   switch (action.type) {
     case SET_QUERY:
-      return state.set('query', action.query)
+      return state.set('query', action.query.trimLeft())
     case ADD_APPLICATION:
       return state.update('applications', (apps) => apps.push(action.application))
   }

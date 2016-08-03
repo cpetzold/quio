@@ -11,7 +11,7 @@ function mapStateToProps (state) {
   return {
     query,
     matchedApplications: applications.filter(({name}) => {
-      return query !== '' && name.toLowerCase().startsWith(query.toLowerCase().trimLeft())
+      return query !== '' && name.toLowerCase().startsWith(query.toLowerCase())
     })
   }
 }
