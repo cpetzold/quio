@@ -51,8 +51,7 @@ async function getApplicationInfo (appPath) {
 const getApplicationInfoMemoized = memoizeAsync(getApplicationInfo)
 
 export async function getApplications (applicationsPath = '/Applications') {
-  let fileNames = await fs.readdirAsync(applicationsPath)
-  let appDirs = fileNames.filter(fileName => path.extname(fileName) === '.app')
-                         .map(d => path.join(applicationsPath, d))
+  let [stdout] = await child_process.execAsync(`find ${applicationsPath} -maxdepth 2 -name "*.app"`)
+  let appDirs = stdout.split('\n').filter(s => s)
   return Promise.all(appDirs.map(getApplicationInfoMemoized))
 }
