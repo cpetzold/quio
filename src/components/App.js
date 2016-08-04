@@ -59,6 +59,7 @@ class App extends React.Component {
     if (firstMatch) {
       shell.openItem(firstMatch.path)
       this.resetQuery()
+      remote.getCurrentWindow().hide()
     }
   }
 
