@@ -16,7 +16,7 @@ const USER_DATA_PATH = app.getPath('userData')
 
 async function icnsToPng ({ icnsPath, outputPath, size = 512, depth = 32 }) {
   await mkdirpAsync(outputPath)
-  let res = await child_process.execAsync(`icns2png -x -s ${size}x${size} -o "${outputPath}" "${icnsPath}"`)
+  let res = await child_process.execAsync(`${__dirname}/../deps/icns2png -x -s ${size}x${size} -o "${outputPath}" "${icnsPath}"`)
 
   let {name} = path.parse(icnsPath)
   return path.join(outputPath, `${name}_${size}x${size}x${depth}.png`)
